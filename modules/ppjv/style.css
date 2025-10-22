@@ -1,0 +1,219 @@
+@font-face {
+  font-family: "Poppins";
+  src: url(./fonts/Poppins-Regular.ttf);
+}
+
+:root {
+  --white: #fff;
+  --light: #f3f4ee;
+  --ff-primary: "Poppins", sans-serif;
+  --clr-primary: hsl(205, 86%, 17%);
+  --clr-secondary: #01c0d0;
+  --desaturate-clr-secondary: hsl(183, 55%, 67%, 0.15);
+  --text-clr-primary: #0b5e66;
+  --text-clr-secondary: #01c0d0;
+  --transition: 0.3s ease-in-out;
+  --box-shadow-nav: 1px 2px 3px 1px #222;
+  --border-radius-8: 8px;
+}
+
+.dark-mode {
+  --white: #393e46;
+  --light: #222831;
+  --clr-primary: hsl(205, 63%, 30%);
+  --clr-secondary: #37e5f5;
+  --desaturate-clr-secondary: hsl(183, 10%, 37%, 0.15);
+
+  --text-clr-primary: #eee;
+  --text-clr-secondary: #eee;
+
+  --box-shadow-nav: 1px 2px 3px 1px var(--desaturate-clr-secondary);
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ff-primary);
+  background-color: var(--light);
+}
+
+.material-symbols-sharp {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  font-family: "Material Symbols Sharp";
+  font-size: 24px;
+  vertical-align: middle;
+}
+
+.navbar .main-navbar {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--clr-primary);
+  padding: 0 10%;
+  box-shadow: var(--box-shadow-nav);
+}
+
+.navbar {
+  position: relative;
+  z-index: 200;
+}
+
+.main-navbar .logo {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.main-navbar .logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.main-navbar .logo h1 {
+  font-size: 1.6rem;
+  color: var(--text-clr-secondary);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.main-navbar .navbarctn ul {
+  display: flex;
+  gap: 3rem;
+  list-style-type: none;
+  white-space: nowrap;
+  padding: 1rem;
+}
+
+.navbarctn ul li a {
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+  color: var(--text-clr-secondary);
+}
+
+.navbarctn ul li a:hover {
+  color: var(--text-clr-primary);
+  transition: var(--transition);
+}
+
+.navbarctn .close {
+  display: none;
+}
+
+.close .material-symbols-sharp {
+  font-size: 1.8rem;
+  color: var(--clr-secondary);
+}
+
+.extrabar .header-right {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 4rem;
+}
+
+.header-right .toggle-menu-btn {
+  display: none;
+}
+
+.header-right .toggle-menu-btn .material-symbols-sharp {
+  font-size: 1.8rem;
+  color: var(--clr-secondary);
+}
+
+.header-right .toggle-theme {
+  display: flex;
+  font-size: 1.4rem;
+  align-items: center;
+  justify-content: center;
+  background: var(--desaturate-clr-secondary);
+  border-radius: var(--border-radius-8);
+  cursor: pointer;
+}
+
+.header-right .toggle-theme span {
+  font-size: 1.4rem;
+  padding: 4px 8px;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease-in-out;
+}
+
+.header-right .toggle-theme span:hover {
+  background: var(--desaturate-clr-secondary);
+  border-radius: var(--border-radius-8);
+}
+
+.header-right .toggle-theme span.active {
+  background-color: var(--clr-secondary);
+  border-radius: var(--border-radius-8);
+  color: var(--light);
+}
+
+/* Effet d'assombrissement + flou du fond */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Couche sombre */
+  backdrop-filter: blur(5px); /* Flou élégant */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 90;
+}
+
+/* Quand on active le menu */
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Menu mobile */
+@media (max-width: 768px) {
+  .navbarctn {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100%;
+    background: var(--clr-primary);
+    transition: right 0.4s ease;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+
+  .navbarctn ul {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .navbarctn .close {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .header-right .toggle-menu-btn {
+    display: block;
+    border: none;
+    background: none;
+  }
+
+  .toggle-menu-btn .material-symbols-sharp {
+    font-size: 1.8rem;
+  }
+}
